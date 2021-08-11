@@ -1,0 +1,170 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Baixar Videos do Youtube</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="icon" href="{% static 'images/Logo-baixar-videos-do-youtube.webp' %}" sizes="48x48" />
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div id="myTopnav" class="topnav">
+                <div id="logoDiv">
+                    <a class="logo" href="#">
+                        <div>
+                            <picture>
+                                <source srcset="{% static 'images/Logo-baixar-videos-do-youtube.webp' %}"
+                                    type="image/webp" />
+                                <source srcset="{% static 'images/Logo-baixar-videos-do-youtube.png' %}"
+                                    type="image/png" />
+                                <img alt="Logo Baixar Videos Online" width="60" height="60" class="lazyload"
+                                    src="{% static 'images/Logo-baixar-videos-do-youtube.png' %}" />
+                            </picture>
+                        </div>
+                        <!-- Baixar-Vídeos<span>.Online</span> -->
+                    </a>
+                    <p>Baixar-Vídeos<span>.Online</span></p>
+                </div>
+                <div class="navBarItems">
+                    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                    <a class="nav-link" title="Início" href="#">
+                        &nbsp;Ajuda</a>
+                    <a class="nav-link" title="Indico"
+                        href="#">&nbsp;Contato</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="bannerDiv">
+            <picture>
+                <source srcset="{% static 'images/banner-pagina-inicial-baixar-videos-do-youtube.webp' %}"
+                    type="image/webp" />
+                <source srcset="{% static 'images/banner-pagina-inicial-baixar-videos-do-youtube.png' %}"
+                    type="image/png" />
+                <img alt="Banner Baixar Videos do Youtube" width="586" height="165" class="lazyload"
+                    src="{% static 'images/banner-pagina-inicial--baixarvideos-do-youtube.png' %}" />
+                <h1>Baixar-Vídeos<span>.Online</span></h1>
+        </div>
+        <div class="requestFormDiv">
+            <form class="requestForm" action="{% url 'index' %}" method="post" autocomplete="off">
+                {% csrf_token %} {{ form }}
+                <button class="submitButton" type="submit"> <i class="fa fa-search"></i></button>
+                <p>Ao utilizar nosso serviço você aceita nossos <a href="">Termos de Serviço</a> e <a href="">Política
+                        de Privacidade</a></p>
+            </form>
+        </div>
+        <div class="resultDiv">
+            {% if titulo %}
+            <div class="videoInfoDiv">
+                <div class="videoImage">
+                    <img src="{{ imagem }}" alt="Thumbnail do Vídeo" width="320" height="240" style="width: 320px; height: 180px; object-fit: cover; object-position: 0 50%;">
+                    <div class="videoInfoSubDiv">
+                        <h2>{{ titulo }} {{ video_objeto.extensao }}</h2>
+                        <h3>{{ duracao }}</h3>
+                        <!-- <span><strong>Autor: </strong> {{ autor }}</span> -->
+                        <!-- <span><strong>Duração do Vídeo: </strong>{{ duracao }}</span> -->
+                        <span><strong>Formato: </strong>{{ melhor_video.extensao }}</span>
+                        <span><strong>Resolução: </strong>{{ melhor_video.resolucao }} pixels</span>
+                        <span><strong>Tamanho: </strong>{{ melhor_video.tamanho }} Mb</span>
+                        <form action="{% url 'video_download' %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="video_url" value="{{ melhor_video.url }}" />
+                            <input type="hidden" name="titulo" value="{{ titulo }}" />
+                            <input type="hidden" name="extensao" value="{{ melhor_video.extensao }}" />
+                            <input class="mainDownloadInput" type="submit" value="BAIXAR AGORA" />
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <div class="videoTablesDiv">
+                <h2>Outras Opções para você Baixar</h2>
+                <div>
+                    <h3>Somente Áudio</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope="col">Formato</th>
+                                <th scope="col">Tamanho</th>
+                                <th scope="col">Qualidade</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for audio, objetos in audio_objeto.items %}
+                            <tr>
+                                <td scope="row">{{ objetos.extensao }}</td>
+                                <td scope="row">{{ objetos.tamanho }} Mb</td>
+                                <td scope="row">{{ objetos.qualidade }}</td>
+                                <form action="{% url 'video_download' %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="video_url" value="{{ objetos.url }}" />
+                                    <input type="hidden" name="titulo" value="{{ titulo }}" />
+                                    <input type="hidden" name="extensao" value="{{ objetos.extensao }}" />
+                                    <td scope="row"><input type="submit" value="Baixar" /></td>
+                                </form>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <h3>Somente Vídeo (sem áudio)</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope="col">Formato</th>
+                                <th scope="col">Tamanho</th>
+                                <th scope="col">Resolução</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for so_video, objetos in so_video_objeto.items %}
+                            <tr>
+                                <td scope="row">{{ objetos.extensao }}</td>
+                                <td scope="row">{{ objetos.tamanho }} Mb</td>
+                                <td scope="row">{{ objetos.resolucao }} pixels</td>
+                                <form action="{% url 'video_download' %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="video_url" value="{{ objetos.url }}" />
+                                    <input type="hidden" name="titulo" value="{{ titulo }}" />
+                                    <input type="hidden" name="extensao" value="{{ objetos.extensao }}" />
+                                    <td scope="row"><input type="submit" value="Baixar" /></td>
+                                </form>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <script>
+        var video_url = "{{ video_url }}";
+        var titulo = "{{ titulo }}";
+        function myFunction() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+    </script>
+
+    <script type="module" src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>
