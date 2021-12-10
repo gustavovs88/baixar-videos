@@ -43,8 +43,6 @@
                 </div>
             </div>
         </nav>
-    </header>
-    <div class="container">
         <div class="bannerDiv">
             <picture>
                 <source srcset="{% static 'images/banner-pagina-inicial-baixar-videos-do-youtube.webp' %}"
@@ -55,14 +53,20 @@
                     src="{% static 'images/banner-pagina-inicial--baixarvideos-do-youtube.png' %}" />
                 <h1>Baixar-Vídeos<span>.Online</span></h1>
         </div>
+    </header>
+    <main class="container">
+
         <div class="requestFormDiv">
-            <form class="requestForm" action="{% url 'index' %}" method="post" autocomplete="off">
+            <form id="videoUrlForm" class="requestForm" action="{% url 'index' %}" method="post" autocomplete="off">
                 {% csrf_token %} {{ form }}
-                <button class="submitButton" type="submit"> <i class="fa fa-search"></i></button>
+                <button id="searchVideoInfo" class="submitButton" type="submit"> <i class="fa fa-search"></i></button>
                 <p>Ao utilizar nosso serviço você aceita nossos <a href="">Termos de Serviço</a> e <a href="">Política
                         de Privacidade</a></p>
             </form>
         </div>
+        <center>
+            <img id="loadingGif" style="display: none;transform: rotate(180deg); margin-top: 30px;" src="{% static 'images/Logo.gif' %}" alt="Baixar Videos Online Gif" width="60" height="60">
+        </center>
         <div class="resultDiv">
             {% if titulo %}
             <div class="videoInfoDiv">
@@ -150,7 +154,81 @@
             </div>
             {% endif %}
         </div>
-    </div>
+        <section>
+            <article>
+                <h1>Baixar Vídeos do Youtube Online</h1>
+                <p>
+                        Para baixar vídeos do youtube utilizando a ferramenta Baixar-Vídeos.Online 
+                    basta você copiar o URL (endereço) do vídeo que você quer baixar, colar 
+                    no campo indicado e clicar na lupinha. Nosso site fará uma busca no youtube e
+                    será apresentado o vídeo com áudio na melhor resolução disponibilizada. 
+                    Além disto serão apresentadas diversas outras opções de download. 
+                </p>
+                <h2>Baixar Vídeos do Youtube Online pelo Computador</h2>
+                <h3>Passo 1 - Acessar o vídeo pelo Youtube</h3>
+                <p>    Acesse o vídeo que você quer baixar pelo youtube.</p>
+                <h3>Passo 2 - Copiar o URL do vídeo</h3>
+                <p>
+                        Copie todo o URL (endereço do site, na barra do seu navegador) do vídeo 
+                    selecionando o mesmo na barra de endereço do seu navegador e apertando ao mesmo tempo
+                     as teclas "Ctrl" e "C" do seu teclado.
+                </p>
+                <p>
+                        Opcionalmente você pode clicar no botão "COMPARTILHAR", logo abaixo do vídeo. Irá aparecer uma 
+                    janela com o URL do vídeo. Basta clicar no botão "COPIAR" que o URL já estará copiado.
+                </p>
+                <h3>Passo 3 - Colar o URL do vídeo no local indicado</h3>
+                <p>
+                        Acesse o site do <a href="https://baixar-videos.online">Baixar-Vídeos.Online</a> e cole o URL 
+                    copiado no local indicado (use as teclas "Ctrl"+"V" pressionadas ao mesmo tempo). Então clique na lupa para o site fazer a busca do vídeo no youtube.
+                </p>
+                <h3>Passo 4 - Escolha uma das Opções para Baixar o seu Vídeo!</h3>
+                <p>
+                    Será apresentada a opção de vídeo com áudio que possui a melhor resolução dentre os 
+                    vídeos disponibilizados. Para baixar, clique no botão verde!
+                </p>
+                <p>
+                    Para baixar as outras opções, basta clicar no botão "BAIXAR" referente à opção apresentada.
+                </p>
+                <p>
+                    Ao clicar no botão, seu download iniciará automaticamente e você pode encontra-lo na pasta 
+                    de downloads do seu computador.
+                </p>
+
+
+                <h2>Baixar Vídeos do Youtube Online pelo Celular</h2>
+                <h3>Passo 1 - Acessar o vídeo pelo aplicativo do Youtube</h3>
+                <p>Acesse o vídeo que você quer baixar pelo aplicativo do Youtube instalado no seu celular.</p>
+                <h3>Passo 2 - Copiar o URL do vídeo</h3>
+                <p>
+                    Aperte no botão "Compartilhar", logo abaixo do vídeo. Irá subir uma 
+                    janela com as opções de compartilhamento. Basta apertar na opção "Copiar link" que o URL já estará copiado.
+                </p>
+                <h3>Passo 3 - Colar o URL do vídeo no local indicado</h3>
+                <p>
+                    Acesse o site do <a href="https://baixar-videos.online">Baixar-Vídeos.Online</a> e cole o URL 
+                    copiado no local indicado (pressione seu dedo sobre o texto "Cole o Link do Video Aqui" por um tempo até que 
+                    apareça a opção "COLAR", aperte em colar logo em seguida).
+                </p>
+                <p>
+                    Então aperte na lupa para o site fazer a busca do vídeo no youtube.
+                </p>
+                <h3>Passo 4 - Escolha uma das Opções para Baixar o seu Vídeo!</h3>
+                <p>
+                    Será apresentada a opção de vídeo com áudio que possui a melhor resolução dentre os 
+                    vídeos disponibilizados. Para baixar, aperte no botão verde!
+                </p>
+                <p>
+                    Para baixar as outras opções, basta apertar no botão "BAIXAR" referente à opção apresentada.
+                </p>
+                <p>
+                    Ao clicar no botão, seu download iniciará automaticamente e você pode encontra-lo na pasta 
+                    de downloads do seu computador.
+                </p>
+            </article>
+        </section>
+
+    </main>
     <script>
         var video_url = "{{ video_url }}";
         var titulo = "{{ titulo }}";
@@ -164,7 +242,7 @@
         }
     </script>
 
-    <script type="module" src="{% static 'js/script.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
 </body>
 
 </html>

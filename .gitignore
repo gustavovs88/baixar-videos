@@ -4,3 +4,4 @@ __pychache__
 .idea
 secret_key.txt
 api_key.txt
+secret.json

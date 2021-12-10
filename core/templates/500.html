@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Baixar Videos do Youtube</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="icon" href="{% static 'images/Logo-baixar-videos-do-youtube.webp' %}" sizes="48x48" />
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div id="myTopnav" class="topnav">
+                <div id="logoDiv">
+                    <a class="logo" href="https://baixar-videos.online">
+                        <div>
+                            <picture>
+                                <source srcset="{% static 'images/Logo-baixar-videos-do-youtube.webp' %}"
+                                    type="image/webp" />
+                                <source srcset="{% static 'images/Logo-baixar-videos-do-youtube.png' %}"
+                                    type="image/png" />
+                                <img alt="Logo Baixar Videos Online" width="60" height="60" class="lazyload"
+                                    src="{% static 'images/Logo-baixar-videos-do-youtube.png' %}" />
+                            </picture>
+                        </div>
+                        <!-- Baixar-Vídeos<span>.Online</span> -->
+                    </a>
+                    <p>Baixar-Vídeos<span>.Online</span></p>
+                </div>
+                <div class="navBarItems">
+                    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                    <a class="nav-link" title="Início" href="#">
+                        &nbsp;Ajuda</a>
+                    <a class="nav-link" title="Indico"
+                        href="#">&nbsp;Contato</a>
+                </div>
+            </div>
+        </nav>
+        <div class="bannerDiv">
+            <picture>
+                <source srcset="{% static 'images/banner-pagina-inicial-baixar-videos-do-youtube.webp' %}"
+                    type="image/webp" />
+                <source srcset="{% static 'images/banner-pagina-inicial-baixar-videos-do-youtube.png' %}"
+                    type="image/png" />
+                <img alt="Banner Baixar Videos do Youtube" width="586" height="165" class="lazyload"
+                    src="{% static 'images/banner-pagina-inicial--baixarvideos-do-youtube.png' %}" />
+                <h1>Baixar-Vídeos<span>.Online</span></h1>
+        </div>
+    </header>
+    <main style="text-align: center;">
+        <h1 style="color: #827e7e;">Erro 500</h1>
+        <h2>Não conseguimos localizar o vídeo pelo URL informado.</h2>
+        <p>Confira o URL informado e <a href="https://baixar-videos.online">tente novamente</a>.
+        </p>
+    </main>

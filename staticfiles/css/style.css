@@ -241,6 +241,11 @@
     cursor: pointer;
   }
 
+  section {
+    max-width: 70vw;
+    margin-top: 150px;
+  }
+
   @media screen and (max-width: 690px) {
     .topnav {
       display: inline-flex;

@@ -241,6 +241,27 @@
     cursor: pointer;
   }
 
+  article {
+    max-width: 70vw;
+    margin: 150px auto
+    
+  }
+
+  article h1, article h2, article h3 {
+    margin: 15px 0px;
+    color: #302c2c;
+  }
+
+  p+h3, p+h2 {
+    color: #ffbd59;
+    margin-top: 30px;
+  }
+  article  p {
+    text-indent: 30px;
+    margin-bottom: 15px;
+    color: #3c8d5f;
+  }
+
   @media screen and (max-width: 690px) {
     .topnav {
       display: inline-flex;

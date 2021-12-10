@@ -129,3 +129,7 @@ def video_download(request):
         return response
     else:
         return render(request, 'index.html')
+
+def error_500(request):
+
+    return render(request, '500.html')
